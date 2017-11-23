@@ -5,7 +5,7 @@ This script was made for a friend and colleague who needed to manually enter mul
 
 ## Please Note
 - Compared to other scripts on my profile, this one was made in Python 2 since it is what we use at work.
-- I'm currently working on a GUI version of this with PyQt to make it easier for users to use efficiently.
+- I'm currently working on a GUI version of this with PyQt to make it easier for users to enter paths and visualize what is happening.
 
 ## Basic Usage
 The user is prompted to enter a path where .wav files are located. If the path is valid ans contains .wav files, the script will loop through
