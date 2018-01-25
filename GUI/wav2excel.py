@@ -2,6 +2,7 @@ import Tkinter, tkFileDialog, tkMessageBox
 import glob
 import os
 import contextlib
+import soundfile
 import wave
 import openpyxl
 from openpyxl.styles import Font, colors
@@ -57,9 +58,9 @@ class App():
     def get_duration(self, list, path):
         duration_list = []
         for i in list:
-            with contextlib.closing(wave.open(path+i, 'r')) as f:
-                frames = f.getnframes()
-                rate = f.getframerate()
+            with contextlib.closing(soundfile.SoundFile(path+i, 'r')) as f:
+                frames = len(f)
+                rate = f.samplerate
                 duration = frames/float(rate)
                 m,s = divmod(duration, 60)
                 duration_list.append('{:02.0f}m{:02.0f}s'.format(m, s))
@@ -86,9 +87,9 @@ class App():
         ws['B1'] = 'Duration'
         ws['C1'] = 'Description'
         ws['D1'] = 'Hyperlink'
-        ws.column_dimensions['A'].width = 30
+        ws.column_dimensions['A'].width = 100
         ws.column_dimensions['B'].width = 25
-        ws.column_dimensions['C'].width = 100
+        ws.column_dimensions['C'].width = 30
         ws.column_dimensions['D'].width = 20
 
 
