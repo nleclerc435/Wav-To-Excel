@@ -71,6 +71,7 @@ class App():
         path = str(tkFileDialog.askdirectory())
         if path != '':
             cleaned_path = path.replace('/', '\\') + '\\'
+            self.lb.path = cleaned_path
             self.label['text'] = 'Path: ' + cleaned_path
             self.lb.delete(0, 'end')
             items = [os.path.basename(file) for file in glob.glob(os.path.join(cleaned_path, '*.wav'))]
@@ -119,8 +120,6 @@ class App():
                 pass    
         else:
             tkMessageBox.showerror('Error', 'No data to transfer.')
-
-            
 
 root = Tkinter.Tk()
 root.geometry('730x400')
